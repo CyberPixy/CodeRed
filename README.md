@@ -1,10 +1,12 @@
-1.	Currency exchange – A program that sources today’s exchange rate for any pair of currencies, calculates day-to-day changes and plots the historical data.
-
-Currency Exchange:  the web App
+## Project Overview ->Currency exchange – A program that sources current spot exchange rates for any pair of currencies, calculates day-to-day changes and plots the historical data.
 
 
-Requirements
-- retrieve a current rate for at least 5 currencies (ideally for every available currency)
+Currency Exchange: final  the web App
+
+
+### Project Name:  **_FXSignal_**
+ Project Overview the main functionality 
+- retrieve a current rate for at least 5 currencies (ideally for every available currency with base EUR)
 - convert an amount provided by user from one currency to another  
 - based on current and historic data get the information about the trend of the rate and suggest if it is a good moment for an exchange of a given currency (or currencies)
 - allow user for creation of a stop order (an order to buy or sell a currency once the price reaches a specific price, known as the stop price. 
@@ -16,5 +18,16 @@ Requirements
 - data retrieved from external sources should be stored in a csv file (or database)
 - plot a chart showing rates across specific time frame.
 - create a chart showing rates change across day-to-day, month-to-month and year-to-year for one or more currencies
+
+
+Step 1 _create new python environment,  using your environment managemnt tool(conda/env)_
+
+Step 2  _Frankfurter API Currency source [Click here](https://frankfurter.dev/). Frankfurter provides endpoints to rerive lates rates, historical data, or time series._
+
+Step 3 _ User FX Currencies are control from config file: fx_config.json, base currency defined as EUR._
+
+- 
+
+
 
 
