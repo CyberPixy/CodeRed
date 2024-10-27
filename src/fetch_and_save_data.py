@@ -34,7 +34,7 @@ def save_to_csv(data, filepath='data/fx_rates.csv'):
         writer = csv.writer(file)
         writer.writerow(["Currency", "Rate", "Date"])
         for currency, rate in rates.items():
-            writer.writerow([date, currency, rate])
+            writer.writerow([currency, rate, date])
 
 
 
