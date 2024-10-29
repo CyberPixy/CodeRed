@@ -1,10 +1,26 @@
-'''This module  include logic for user currency convertor '''
+'''This module  include functionalities:
+    swap_currency() 
+    ...
+     '''
 
 
-def convert_currency():
-    """This a function that takes three parameters:_input_ccy, amount, and required_currency and convert amount of provided currency into currncy of user choice
-    par
+def swap_currency(given_currency, amount, swap_to_ccy, 
+                  ):
+    """
+    Converts an amount from the given currency to the target currency
+
+    This function takes four parameters: the data with current_rates, input_ccy, the amount to swap, and the target_currency. It than calulates the converted amount based on current
+    exchange rate.
     
+    : current_rates: dict - A dictionary containing current  fx exchange rate  source from api data
+    : param  given_currency: str - The currency of User input
+    : param amount: float -  User amount of money give in currency 
+    : param swap_to_ccy: str -  currency to buy in target currency
+    : param b
+
+    :return: fload - The converted amount in the target currency
 
     """
-    pass
+    converted_amount = float(amount)/fx_rates[given_currency] * fx_rates[swap_currency]
+    return converted_amount
+    
