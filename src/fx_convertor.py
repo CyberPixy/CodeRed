@@ -2,9 +2,13 @@
     swap_currency() 
     ...
      '''
+import pandas as pd
+# Load data from the CSV file
+data_df = pd.read_csv("fx_rates.csv")
 
+data_df['date'] = pd.to_datetime(data_df['date'])
 
-def swap_currency(amount, input_ccy_code, swap_to_ccy):
+def swap_currency(amount, input_ccy_code, swap_to_ccy): 
     """
     Converts an amount from the given currency to the target currency
 
@@ -20,4 +24,7 @@ def swap_currency(amount, input_ccy_code, swap_to_ccy):
     """
     converted_amount = (amount/input_ccy_code) * swap_to_ccy
     return converted_amount
+
+
+# def get_currency_trend
     

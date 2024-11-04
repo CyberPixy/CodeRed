@@ -7,12 +7,40 @@ This module  will be used to define structure of source FX rate and if needed it
 
 """
 import requests # library for simple HTTP request 
-import csv # csv format files reading and writing 
+import csv # csv format files reading and writing
+from datetime import datetime, timedelta
+
+
+def fetch_and_save_fx_rate():
+    '''Function to fetch FX rates and save them to a CSV file'''
+    try:
+        # Fetch data from the API
+        data = fetch_fx_rate()
+        
+        # Save data to CSV
+        save_to_csv(data)
+        
+        print("FXrate data succesfully saved to fx_rate.csv file\n")
+        input("\nPress Enter for main menu...")
+    except Exception as e:
+        print(f"Error {e} occurred, please verify")
+
+
+def get_date_one_year_ago() ->str:
+    # Function that calculates date_from, that is 12months before current_date
+    today = datetime.today()
+    # one_year_ago = today.replace(year=today.year -1)
+    one_year_ago =today.replace(month=today.month -1).strftime('%Y-%m-%d') 
+    return one_year_ago
+
+start_date = get_date_one_year_ago()
 
 
 
+api_fx_spot_url = f"https://api.frankfurter.app/{start_date}.."  # Frnakfurt URL API endpoint
+# api_fx_spot_url = "https://api.frankfurter.app/latest"  # Frnakfurt URL API endpoint
 
-api_fx_spot_url = "https://api.frankfurter.app/latest"  # Frnakfurt URL API endpoint
+# Fetch rates over the period interface  https://api.frankfurter.app/2024-01-01..2024-10-31
 
 def fetch_fx_rate():
     '''Function to request get api url defined with api_fx_spot_url, check the response status, return json format response or catch  other then OK status'''
@@ -27,14 +55,32 @@ def save_to_csv(data, filepath='data/fx_rates.csv'):
     ''' Function to save the FX rate to a CSV file 
     :param data: data return from the API 
     :param filepath: Path to save the CSV file, default(filepath='data/fx_rates.csv) '''
-    rates = data.get("rates", {})
     date = data.get("date", "") 
-    with open(filepath, mode='w', newline='') as file:
+    rates = data.get("rates", {})
+  
+    with open(filepath, mode='w', newline='', encoding='utf-8') as file:
 
         writer = csv.writer(file)
-        writer.writerow(["Currency", "Rate", "Date"])
-        for currency, rate in rates.items():
-            writer.writerow([currency, rate, date])
+        # Write header
+        writer.writerow(['Date', 'Currency', 'Rate'])
+
+        # Write data
+
+        for date, currencies in data['rates'].items():
+
+                for currency, rate in currencies.items():
+
+                    writer.writerow([
+
+                        date, 
+
+                        currency, 
+
+                        rate
+
+                    ])
+
+
 
 
 
