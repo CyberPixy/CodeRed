@@ -44,7 +44,15 @@ Converts the specified amount from one currency to another.
 
 
 
-
-
-# def get_currency_trend
+# Function to get the trend of the rate
+def get_currency_trend(currency, df=all_data_fx_df):
+    currency_data = df[df['Currency'] == currency].sort_values(by='Date')
+    if len(currency_data) < 2:
+        return "Not enough data to determine trend."
+    
+    initial_rate = currency_data.iloc[0]['Rate']
+    latest_rate = currency_data.iloc[-1]['Rate']
+    
+    trend = "upward" if latest_rate > initial_rate else "downward"
+    return trend, initial_rate, latest_rate
     
