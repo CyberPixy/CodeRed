@@ -19,7 +19,6 @@ def fetch_and_save_fx_rate():
         
         # Save data to CSV
         save_to_csv(data)
-        
         print("FXrate data succesfully saved to fx_rate.csv file\n")
         input("\nPress Enter for main menu...")
     except Exception as e:

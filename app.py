@@ -1,7 +1,7 @@
 """ The core module of the apllication, that encapsulate app logic
 """
 from src.fetch_and_save_data import fetch_and_save_fx_rate
-
+from src.fx_convertor import convert_currency
 
 def main():
 
@@ -19,8 +19,19 @@ def main():
 
         if choice == '1':
             fetch_and_save_fx_rate()
-        # elif choice == '2':
-        #     convert_currency()
+        elif choice == '2':
+            try:
+                amount_input = float(input("Enter the amount to convert: "))
+                from_currency_input = input("Enter the currency you have (e.g., ZAR, ISK): ").strip().upper()
+                to_currency_input = input("Enter the currency you want (e.g., AUD, BGN): ").strip().upper()
+                converted_amount = convert_currency(amount_input, from_currency_input, to_currency_input)          # Conversion
+                print(f"Converted:{amount_input}''{from_currency_input} is {converted_amount[0]:.2f} {to_currency_input}, and todays'fx for {from_currency_input} is {converted_amount[1]}")
+            except ValueError as e:
+                print(f"Error: {e}")
+            except Exception as e:
+                print(f"An error occurred: {e}")
+
+            input("\n To continue press Enter")
         # elif choice == '3':
         #     analyze_trend()
         # elif choice == '4':
