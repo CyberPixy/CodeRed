@@ -18,12 +18,13 @@ def main():
         choice = input("Enter the option number from menu: ")
 
         if choice == '1':
+            print("Started: Fetching FX rate data....")
             fetch_and_save_fx_rate()
         elif choice == '2':
             try:
                 amount_input = float(input("Enter the amount to convert: "))
-                from_currency_input = input("Enter the currency you have (e.g., ZAR, ISK): ").strip().upper()
-                to_currency_input = input("Enter the currency you want (e.g., AUD, BGN): ").strip().upper()
+                from_currency_input = (input("Enter the currency you have (e.g., ZAR, ISK): ").strip().upper())
+                to_currency_input = (input("Enter the currency you want (e.g., AUD, BGN): ").strip().upper())
                 converted_amount = convert_currency(amount_input, from_currency_input, to_currency_input)          # Conversion
                 print(f"Converted:{amount_input}''{from_currency_input} is {converted_amount[0]:.2f} {to_currency_input}, and todays'fx for {from_currency_input} is {converted_amount[1]}")
             except ValueError as e:

@@ -9,18 +9,12 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
 
 # PANDA SECTION(to be remove and clean up...)
 # Load data from the CSV file
-csv_f_path = r'C:\Users\48570\source\python_repository\codeRed\CodeRed-1\data\fx_rates.csv'
-data_df = pd.read_csv(csv_f_path)
-# print(data_df.head())
-all_data_fx_df = data_df.sort_values(by='Date', ascending=False) #sort data by a date descending
-current_date = data_df['Date'].max() # get current date for data set
-current_fx_df = all_data_fx_df[all_data_fx_df["Date"] == current_date]
-# print(current_fx_df)
+csv_f_path = r'C:\Users\48570\source\python_repository\codeRed\CodeRed-1\data_csv\fx_rates.csv'
 
 
+# XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-
-def convert_currency(amount, from_currency, to_currency, df=current_fx_df):
+def convert_currency(amount, from_currency, to_currency):
     """
 Converts the specified amount from one currency to another.
     x
@@ -30,10 +24,40 @@ Converts the specified amount from one currency to another.
     :return: The converted amount.
     """
     # input currency rate injest from df
+    data_df = pd.read_csv(csv_f_path)
+    # print(data_df.head())
+    all_data_fx_df = data_df.sort_values(by='Date', ascending=False) #sort data by a date descending
+    current_date = data_df['Date'].max() # get current date for data set
+    current_fx_df = all_data_fx_df[all_data_fx_df["Date"] == current_date]
+    # print(current_fx_df)
     from_rate = df[df['Currency'] == from_currency]['Rate'].values
     # output currency rate injest from df
     to_rate = df[df['Currency'] == to_currency]['Rate'].values
     
+    print(f'Check {from_rate.size} ZWARIUJE')
+
+    if from_rate.size == 0 and to_rate.size == 0:
+        result = amount
+    if from_currency == to_currency:
+        result = amount
+        # print(f'Entered from_currency: EUR!')
+        # if to_rate == 'EUR':
+        # if to_rate.size == 0:
+        #     raise ValueError(ValueError("Currency rates cannot be blank, try with correct ccy code"))
+        # result = amount * to_rate[0]
+    
+    # if from_currency == 'EUR':
+    #     print(f'Entered from_currency: EUR!')
+    #     if to_rate == 'EUR':
+    #     if to_rate.size == 0:
+    #         raise ValueError(ValueError("Currency rates cannot be blank, try with correct ccy code"))
+    #     result = amount * to_rate[0]
+    
+    #     if from_currency.size == 0:
+    #         raise ValueError(ValueError("Currency rates cannot be blank, try with correct ccy code"))
+    #     result = (amount / from_rate[0])
+    
+
     # Check if fx_rate found for any currency
     if from_rate.size == 0 or to_rate.size == 0:
         raise ValueError("One or both currency rates not found.")
