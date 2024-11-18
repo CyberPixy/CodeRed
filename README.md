@@ -26,6 +26,8 @@ Step 2  _Frankfurter API Currency source [Click here](https://frankfurter.dev/).
 
 Step 3 _ User FX Currencies are control from config file: fx_config.json, base currency defined as EUR._
 
+Step 4 Using DASH framwork. Dash is a HTML framework, that alllows to show the application in the browser. This mean it contains a html components, that are use to build the application and communicate with each other.
+
 - 
 
 

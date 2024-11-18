@@ -1,7 +1,7 @@
 TREND_CHART = "trend-chart"
 
 
-SELECT_ALL_CURRENCIES_BUTTON = "select-all-currencies-button"
+SELECTED_CURRENCIES = "selected-currencies"
 CURRENCY_DROPDOWN = "currency-dropdown"
 
 SELECT_ALL_MONTHS_BUTTON = "select-all-months-button"

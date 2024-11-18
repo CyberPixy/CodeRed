@@ -7,28 +7,32 @@ from src.components import (
     year_dropdown,
 )
 
-
 def create_layout(app: Dash, data: pd.DataFrame) -> html.Div:
     return html.Div(
         className="app-div",
         children=[
             html.H1(app.title),
             html.Hr(),
+            html.P("Select currency or currencies to display on the plot:"),
             # html.Div(
-            #     className="dropdown-container",
+            #     className="dropdown-cont1",
             #     children=[
             #         year_dropdown.render(app, data),
             #         month_dropdown.render(app, data),
-            #         currency_dropdown.render(app, data),
+                    
             #     ],
-            # ),
+            #     ),
             html.Div(
                 className="dropdown-container",
                 children=[
                     currency_dropdown.render(app, data),
                 ],
             ),
-
-            trend_chart.render(app, data),
-        ],
-    )
+            html.Div(
+                        className="chart-container",
+                        children=[
+                            trend_chart.render(app, data),
+                        ],
+                    ),
+                ],
+            )

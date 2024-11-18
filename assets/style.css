@@ -2,12 +2,17 @@ hr {
     border-top: 2px solid gray;
 }
 
-.dropdown-container {
+.dropdown-cont1 {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
 }
 
+.dropdown-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1px;
+}
 .dropdown-button {
     width: 100%;
     margin-top: 5px;
@@ -18,7 +23,7 @@ hr {
 }
 
 .app-div {
-    padding: 10px;
+    padding: 50px;
 }
 
 .data-table-div {
