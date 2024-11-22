@@ -1,5 +1,10 @@
 """ The core module of the apllication, that encapsulate app logic
 """
+import dash
+from dash import dcc, html, Input, Output, State
+import pandas as pd
+import plotly.express as px
+from datetime import datetime
 from src.fetch_and_save_data import fetch_and_save_fx_rate
 # from src.fx_convertor import convert_currency, get_currency_trend
 
@@ -8,11 +13,9 @@ def main():
     while True:
         print("\nMain Menu:")
         print("1. Retrieve current rate for EUR base currencies to csv file")
-        print("2. Convert an amount from one currency to another")
-        print("3. Analyze current and historic data for trend and suggeste if exchange")
-        print("4. Create a stop order")
-        print("5. Create a limit order")
-        print("6. Plot chart showing rates over a last month")
+        print("2. Run Dash UI")
+        print("3. Create a stop order")
+        print("4. Create a limit order")
         print("7. Exit")
         
         choice = input("Enter the option number from menu: ")
@@ -22,11 +25,8 @@ def main():
             fetch_and_save_fx_rate()
         elif choice == '2':
             try:
-                amount_input = float(input("Enter the amount to convert: "))
-                from_currency_input = (input("Enter the currency you have (e.g., ZAR, ISK): ").strip().upper())
-                to_currency_input = (input("Enter the currency you want (e.g., AUD, BGN): ").strip().upper())
-                converted_amount = convert_currency(amount_input, from_currency_input, to_currency_input)          # Conversion
-                print(f"Converted:{amount_input}''{from_currency_input} is {converted_amount[0]:.2f} {to_currency_input}, and todays'fx for {from_currency_input} is {converted_amount[1]}")
+                dash.run_dash()
+                
             except ValueError as e:
                 print(f"Error: {e}")
             except Exception as e:

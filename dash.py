@@ -5,7 +5,7 @@ from src.data.loader import load_transaction_data
 from src.fetch_and_save_data import fetch_and_save_fx_rate
 DATA_PATH = r'C:\Users\48570\source\python_repository\codeRed\CodeRed-1\data_csv\fx_rates.csv'
 
-def main() -> None:
+def run_dash() -> None:
     # load the data and create the data manager
     try:
         data = load_transaction_data(DATA_PATH)
@@ -21,6 +21,3 @@ def main() -> None:
     app.run()
 
 
-if __name__ == "__main__":
-    main()
-    

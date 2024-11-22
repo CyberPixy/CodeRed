@@ -6,42 +6,45 @@ import plotly.express as px
 from . import ids
 
 
-def render(app: Dash, data: pd.DataFrame) -> html.Div:
+def render(app, data: pd.DataFrame):
+    """
+    Renderuje wykres liniowy pokazujący dane dla tylko jednej wybranej waluty.
+    """
 
     @app.callback(
         Output(ids.TREND_CHART, "figure"),
-        [
-            # Input(ids.YEAR_DROPDOWN, "value"),
-            # Input(ids.MONTH_DROPDOWN, "value"),
-            Input(ids.CURRENCY_DROPDOWN, "value"),
-        ],
+        [Input(ids.CURRENCY_DROPDOWN, "value")],
     )
-    def update_trend_chart(selected_currencies: list[str])-> html.Div:
-        '''    '''
-       # Create a line chart of the selected currency's trend
-        if not selected_currencies:
-            return{
-                'data': [], 
-                'layout': {
-                    'title': "Select a currency tp display the plot.", 
-                    'xaxis': {'visible': False}, 
-                    'yaxix': {'visible': False},
-                },
-            }
-        df_end_of_month = data[data["Date"] == data.groupby(["Year", "Month"])["Date"].transform("max")]
+    def update_trend_chart(selected_currency:list[str]):
+        """
+        Aktualizuje wykres dla wybranej waluty.
 
-        if selected_currencies:
-            # Filtrowanie danych po wybranych walutach
-            filtered_data = df_end_of_month[df_end_of_month["Currency"].isin(selected_currencies)]
-        else:
-            # Bez wyboru walut pokazujemy wszystkie dane
-            filtered_data = df_end_of_month
-
-        if filtered_data.empty:
+        :param selected_currency: Waluta wybrana przez użytkownika.
+        :return: Obiekt wykresu.
+        """
+        # Wyznaczenie ostatniego dnia miesiąca dla wybranej waluty
+        # df_end_of_month = data[data["Date"] == data.groupby(["Year", "Month"])["Date"].transform("max")]
+        df_end_of_month = data[data["Date"].isin(data.groupby(["Year", "Month"])["Date"].transform("max"))]
+        if not selected_currency:
+            # Jeśli użytkownik nie wybrał waluty, zwracamy pusty wykres z komunikatem.
             return {
                 "data": [],
                 "layout": {
-                    "title": "No data available for the selected filters.",
+                    "title": "Please select a currency to display.",
+                    "xaxis": {"visible": False},
+                    "yaxis": {"visible": False},
+                },
+            }
+
+        # Filtrowanie danych dla wybranej waluty
+        filtered_data = df_end_of_month[df_end_of_month["Currency"] == selected_currency]
+
+        if filtered_data.empty:
+            # Jeśli brak danych dla wybranej waluty, zwracamy pusty wykres z komunikatem.
+            return {
+                "data": [],
+                "layout": {
+                    "title": f"No data available for the selected currency: {selected_currency}.",
                     "xaxis": {"visible": True, "title": "Date"},
                     "yaxis": {"visible": True, "title": "Rate"},
                 },
@@ -54,17 +57,16 @@ def render(app: Dash, data: pd.DataFrame) -> html.Div:
             freq="M",
         )
 
-        # Tworzenie wykresu liniowego
+        # Tworzenie wykresu liniowego dla jednej waluty
         fig = px.line(
             filtered_data,
             x="Date",
             y="Rate",
-            color="Currency",
-            title="FX Rates Over Time",
-            labels={"Rate": "Rate", "Date": "Date", "Currency": "Currency"},
+            title=f"FX Rate Over Time: {selected_currency}",
+            labels={"Rate": "Rate", "Date": "Date"},
         )
 
-        # Dodanie pełnych miesięcy do osi X
+        # Dodanie pełnych miesięcy do osi X i dynamicznej osi Y
         fig.update_layout(
             xaxis=dict(
                 tickformat="%b %Y",  # Formatowanie osi X na miesiące i rok
@@ -85,6 +87,8 @@ def render(app: Dash, data: pd.DataFrame) -> html.Div:
         return fig
 
     return dcc.Graph(id=ids.TREND_CHART)
+
+
     
 
     
