@@ -1,111 +1,154 @@
-hr {
-    border-top: 2px solid gray;
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
-.dropdown-cont1 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #E0E0E0; /* Jasny szary tekst */
+    background-color: #151515; /* Ciemne tło */
 }
-
-.dropdown-container {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 1px;
+.header-container {
+    text-align: center;
+    margin-bottom: 20px;
 }
-.dropdown-button {
-    width: 100%;
-    margin-top: 5px;
-}
-
-.tabs-group {
-    padding-top: 20px;
+h1, .title {
+    text-align:center;
+    font-weight: 700; /* Grubszy dla tytułów */
+    font-size: 24px;
+    color: #ffffff; /* Biały tekst */
+    margin-bottom: 15px;
 }
 
 .app-div {
-    padding: 50px;
+    padding: 20px; 
+}
+.custom-hr {
+    border: 2px solid #47c4ee; /* Jasnoniebieski kolor */
+    margin: 20px 0;
+    /* width: 90%; skraca widoczna linie*/
+}
+/* Główna sekcja na kolumny */
+.main-container {
+    display: flex; /* Ustawienie Flexbox */
+    gap: 20px; /* Odstęp między kolumnami */
+    height: 20vh; /* Zajmuje 1/3 wysokości strony */
+    max-height: 200px; /* Opcjonalnie ograniczenie wysokości */
 }
 
-.data-table-div {
-    margin: auto;
-    padding: 10px;
-}
-.checklist {
-    text-align: center;
-    padding-top: 10px;
+/* Lewa kolumna */
+.left-container {
+    flex: 1; /* Lewa kolumna zajmuje równą część */
+    display: grid; /* Użycie siatki dla dropdownów */
+    grid-template-columns: repeat(2, 1fr); /* Dwa dropdowny w rzędzie */
+    gap: 10px; /* Odstępy między dropdownami */
     padding-bottom: 20px;
 }
 
-
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
-}
-
-.title {
-    text-align: center;
-    margin: 20px 0;
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-}
-
-.form-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin: 20px 0;
-}
-
-.form-field {
+/* Dropdowny */
+.dropdown-item {
     display: flex;
     flex-direction: column;
-    gap: 10px;
 }
-
-.date-picker-container {
-    text-align: center;
-    margin: 20px 0;
+/* Nagłówki dropdownów */
+.dropdown-item h6 {
+    margin-bottom: 5px;
+    font-size: 14px; /* Wielkość tekstu nagłówka */
+    color: #e7b40c;
 }
-
-.button-container {
-    text-align: center;
-    margin: 20px 0;
-}
-
-button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-.result {
-    text-align: center;
-    margin: 20px 0;
+.subtitle {
     font-size: 18px;
     font-weight: bold;
-    color: #333;
+    color: #ffffff;
+    margin-bottom: 1px;
+    grid-column: span 2; /* Rozciągnij podtytuł na całą szerokość siatki */
+    text-align: left; /* Wyrównanie do lewej */
 }
 
-.tabs-container {
-    margin: 0 auto;
-    text-align: center;
-    width: 80%;
+/* Prawa kolumna */
+.right-container {
+    flex: 1; /* Prawa kolumna zajmuje równą część */
+    /* background-color: #646060; Jasne tło */
+    border: 3px solid #235c6f; /* Delikatna ramka */
+    border-radius: 10px; /* Zaokrąglenie rogów */
+    padding: 5px;
+    /* margin-top: 0vh; */
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;  Wyśrodkowanie zawartości pionowo */
+    align-items: center; /* Wyśrodkowanie zawartości poziomo */
 }
-
-.summary-container {
-    text-align: center;
-    margin: 20px 0;
+.title-raight-container {
     font-size: 18px;
     font-weight: bold;
-    color: #333;
+    color: #ffffff;
+    text-align:left; /* Wyrównanie do lewej */
+    margin-bottom: 5px;
+    /* grid-column: span 2; Rozciągnij podtytuł na całą szerokość siatki */
 }
+.right-inside-container {
+    display: flex;
+}
+.Select {
+    background-color: #e7b40c; /* Tło dropdownu */
+    /*border: 1px solid #ddd;  Cieniutka ramka */
+    /* border-radius: 5px; Zaokrąglone rogi */
+    font-size: 14px; /* Rozmiar czcionki */
+    color: #0b1d68; /* Kolor tekstu */
+    padding: 2px; /* Wewnętrzne odstępy */
+}
+
+/* Podświetlenie opcji dropdownu podczas najechania */
+.Select__menu {
+    background-color: #ffffff; /* Tło listy opcji */
+    border: 1px solid #ccc; /* Ramka listy opcji */
+    border-radius: 5px; /* Zaokrąglone rogi listy */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Delikatny cień */
+}
+
+/* Pojedyncze opcje w dropdownie */
+.Select__option {
+    padding: 10px; /* Odstęp między tekstem a krawędzią opcji */
+    color: #2d2a2a; /* Kolor tekstu opcji */
+}
+
+.Select__option:hover {
+    background-color: #eaeaea; /* Tło podczas najechania */
+    color: #000; /* Kolor tekstu podczas najechania */
+}
+
+/* Opcja aktualnie zaznaczona */
+.Select__single-value {
+    color: #333; /* Kolor zaznaczonej opcji */
+}
+
+.dcc-input-container .dcc-input {
+    display: inline-block; /* Właściwość display, by input zachowywał się jak dropdown */
+    background-color: #eaeaea;  /* Tło inputa */
+    border: 1px solid #ddd;  /* Taka sama cieniutka ramka jak w dropdownie */
+    /*border: 1px solid #e7b40c;   Cieniutka ramka */
+    border-radius: 5px;  /* Zaokrąglone rogi */
+    font-size: 14px;  /* Rozmiar czcionki */
+    color: #0b1d68;  /* Kolor tekstu */
+    padding: 15px;  /* Wewnętrzne odstępy */
+     /*width: 100%;  Szerokość na 100% kontenera */
+}
+.dcc-input-container h6 {
+    margin-bottom: 5px;
+    font-size: 14px; /* Wielkość tekstu nagłówka */
+    color: #e7b40c;
+}
+
+/* Sekcja na wykresy */
+.graph-container {
+    margin-top: 20px; /* Odstęp od sekcji z dropdownami */
+    display: flex;
+    justify-content: space-between;
+    height: auto;
+    flex-wrap: wrap; /* Wykresy zawiną się na mniejszych ekranach */
+}
+
+/* Wykresy */
+.graph-container > div {
+    flex: 1;
+    margin-right: 20px;
+}
+

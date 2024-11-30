@@ -1,14 +1,18 @@
-import pandas as pd
+"This module provide function that transform data into datasets, that will get use in dash layout visualisation for select values graph and othe visualisations"""
 
-from . loader import load_transaction_data
+
+import pandas as pd
+from src.data.loader import load_transaction_data
 
 path = r'C:\Users\48570\source\python_repository\codeRed\CodeRed-1\data_csv\fx_rates.csv'
-import pandas as pd
-
-data = load_transaction_data(path)
 
 
-df = pd.DataFrame(data)
+
+df = load_transaction_data(path)
+# print(data)
+
+
+# df = pd.DataFrame(data)
 
 # Waluty wejściowe od użytkownika
 currency_input = "PLN"  # Waluta użytkownika 1
@@ -23,6 +27,7 @@ def deffered_data(df=df, ccy_input: str=currency_input, currency_base:str = curr
     # Merging danych dla przeliczeń
     merged_df = pd.merge(
         df_input,
+        
         df_base,
         on=["Date", "Year", "Month"],
         suffixes=("_input", "_base"),
@@ -60,8 +65,8 @@ def deffered_data(df=df, ccy_input: str=currency_input, currency_base:str = curr
     return enriched_df
 
 
-test = deffered_data(df)
-# print(test)
+# test = deffered_data(df)
+# # print(test)
 '''
 Wyjaśnienie:
 
