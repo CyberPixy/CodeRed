@@ -30,11 +30,11 @@ Converts the specified amount from one currency to another.
     current_date = data_df['Date'].max() # get current date for data set
     current_fx_df = all_data_fx_df[all_data_fx_df["Date"] == current_date]
     # print(current_fx_df)
-    from_rate = df[df['Currency'] == from_currency]['Rate'].values
+    from_rate = current_fx_df[current_fx_df['Currency'] == from_currency]['Rate'].values
     # output currency rate injest from df
-    to_rate = df[df['Currency'] == to_currency]['Rate'].values
+    to_rate = current_fx_df[current_fx_df['Currency'] == to_currency]['Rate'].values
     
-    print(f'Check {from_rate.size} ZWARIUJE')
+  
 
     if from_rate.size == 0 and to_rate.size == 0:
         result = amount
@@ -69,14 +69,17 @@ Converts the specified amount from one currency to another.
 
 
 # Function to get the trend of the rate
-def get_currency_trend(currency, df=all_data_fx_df):
+def get_currency_trend(currency:str):
+    df = pd.read_csv(csv_f_path)
+    df = df.sort_values(by='Date', ascending=False)
     currency_data = df[df['Currency'] == currency].sort_values(by='Date')
     if len(currency_data) < 2:
         return "Not enough data to determine trend."
     
     initial_rate = currency_data.iloc[0]['Rate']
     latest_rate = currency_data.iloc[-1]['Rate']
-    
+    initial_date = currency_data.iloc[0]['Date']
+    latest_date = currency_data.iloc[-1]['Date']
     trend = "upward" if latest_rate > initial_rate else "downward"
-    return trend, initial_rate, latest_rate
+    return trend, initial_rate, latest_rate, initial_date, latest_date
     

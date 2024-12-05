@@ -14,7 +14,7 @@ h1, .title {
     text-align:center;
     font-weight: 700; /* Grubszy dla tytułów */
     font-size: 24px;
-    color: #ffffff; /* Biały tekst */
+    color: #3a5486; /* Niebieski tekst */
     margin-bottom: 15px;
 }
 
@@ -22,8 +22,8 @@ h1, .title {
     padding: 20px; 
 }
 .custom-hr {
-    border: 2px solid #47c4ee; /* Jasnoniebieski kolor */
-    margin: 20px 0;
+    border: 2px solid #3a5486; /* Jasnoniebieski kolor */
+    margin: 10px 0;
     /* width: 90%; skraca widoczna linie*/
 }
 /* Główna sekcja na kolumny */
@@ -57,7 +57,7 @@ h1, .title {
 .subtitle {
     font-size: 18px;
     font-weight: bold;
-    color: #ffffff;
+    color: #3a5486;
     margin-bottom: 1px;
     grid-column: span 2; /* Rozciągnij podtytuł na całą szerokość siatki */
     text-align: left; /* Wyrównanie do lewej */
@@ -67,7 +67,7 @@ h1, .title {
 .right-container {
     flex: 1; /* Prawa kolumna zajmuje równą część */
     /* background-color: #646060; Jasne tło */
-    border: 3px solid #235c6f; /* Delikatna ramka */
+    border: 3px solid #3a5486; /* Delikatna ramka */
     border-radius: 10px; /* Zaokrąglenie rogów */
     padding: 5px;
     /* margin-top: 0vh; */
@@ -79,7 +79,7 @@ h1, .title {
 .title-raight-container {
     font-size: 18px;
     font-weight: bold;
-    color: #ffffff;
+    color: #3a5486;
     text-align:left; /* Wyrównanie do lewej */
     margin-bottom: 5px;
     /* grid-column: span 2; Rozciągnij podtytuł na całą szerokość siatki */
@@ -136,19 +136,29 @@ h1, .title {
     font-size: 14px; /* Wielkość tekstu nagłówka */
     color: #e7b40c;
 }
-
+.tabs-container {
+    margin-bottom: 1px;
+    font-size: 14px; /* Wielkość tekstu nagłówka */
+    color: #e7b40c;
+}
 /* Sekcja na wykresy */
 .graph-container {
-    margin-top: 20px; /* Odstęp od sekcji z dropdownami */
+    margin-top: 1px; /* Odstęp od sekcji z dropdownami */
     display: flex;
     justify-content: space-between;
     height: auto;
     flex-wrap: wrap; /* Wykresy zawiną się na mniejszych ekranach */
+    gap: 15px;
+    background-color: #151515;
+    padding-bottom: 1px;
+    /* padding: 15px; */
 }
 
 /* Wykresy */
 .graph-container > div {
     flex: 1;
-    margin-right: 20px;
+    min-width: 300px;
+    /* margin-right: 20px; */
 }
+
 

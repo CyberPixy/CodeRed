@@ -24,6 +24,8 @@ def load_transaction_data(path: str) -> pd.DataFrame:
     data[DataSchema.DATE] = pd.to_datetime(data[DataSchema.DATE], errors='coerce')
     data[DataSchema.YEAR] = data[DataSchema.DATE].dt.year.astype(str)
     data[DataSchema.MONTH] = data[DataSchema.DATE].dt.month.astype(str)
-    sorted_data = data.sort_values(by='Date', ascending=False)
+    # sorted_data = data.sort_values(by='Date', ascending=False)
+    # Change date format to DD-MM-YYYY for HTML display
+    # data[DataSchema.DATE] = data[DataSchema.DATE].dt.strftime('%d-%m-%Y')
     
-    return sorted_data
+    return data
